@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
         <style>
-            h1 {
+            h1, h2 {
                 font-family: Montserrat, 'sans-serif';
             }
             .large-text {
@@ -22,6 +22,14 @@
             }
             .figure {
                 font-family: Expletus Sans, 'sans-serif';
+            }
+            .adv-icon {
+                width: 42px;
+                margin-right: 12px;
+            }
+
+            .adv-poster {
+                width: 100%;
             }
         </style>
     </head>
@@ -71,7 +79,26 @@
                 <div class="col-sm">
                 </div>
             </div>
-            <article class="row text-center">
+            <article class="row text-center mt-5">
+                <div class="col-sm align-self-center">
+                    <p>
+                        <span class="large-text figure" id="total-cases-figure">00000</span><br>
+                        Total Cases
+                    </p>
+                    <p>
+                        <span class="large-text figure" id="recovered-figure">00000</span><br>
+                        Recovered
+                    </p>
+                    <p>
+                        <span class="large-text figure" id="deceased-figure">00000</span><br>
+                        Deceased
+                    </p>
+                </div>
+                <div class="col-sm align-self-center">
+                    <canvas id="totalCasesChart"></canvas>
+                </div>
+            </article>
+            <article class="row mt-5 text-center">
                 <div class="col-sm align-self-center">
                     <canvas id="activeCasesChart"></canvas>
                 </div>
@@ -94,34 +121,124 @@
                     </p>
                 </div>
             </article>
-            <article class="row text-center mt-3">
-                <div class="col-sm">
-                    <p>
-                        <span class="large-text figure" id="total-cases-figure">00000</span><br>
-                        Total Cases
-                    </p>
-                    <p>
-                        <span class="large-text figure" id="recovered-figure">00000</span><br>
-                        Recovered
-                    </p>
-                    <p>
-                        <span class="large-text figure" id="discharged-figure">00000</span><br>
-                        Discharged
-                    </p>
-                    <p>
-                        <span class="large-text figure" id="deceased-figure">00000</span><br>
-                        Deceased
-                    </p>
-                </div>
-                <div class="col-sm align-self-center">
-                    <canvas id="totalCasesChart"></canvas>
-                </div>
-            </article>
-            <article class="row mt-3">
+            <article class="row mt-5">
                 <div class="col text-center">
                     <h3>News</h3>
                 </div>
-                
+            </article>
+            <article class="row mt-3">
+                <div class="col-sm text-center align-self-center">
+                    <div class="card text-center">
+                        <div class="card-header">
+                          Featured
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title" id="article-title1">Special title treatment</h5>
+                          <p class="card-text" id="article-content1">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">View Article</a>
+                          <p class="mt-3 text-muted"><em>Published on <span id="article-date"></span></em></p>
+                        </div>
+                      </div>
+                      <div class="card text-center mt-3">
+                        <div class="card-header">
+                          Featured
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title" id="article-title2">Special title treatment</h5>
+                          <p class="card-text" id="article-content2">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">View Article</a>
+                          <p class="mt-3 text-muted"><em>Published on <span id="article-date"></span></em></p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-sm mt-5 text-center">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img src="..." class="card-img" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img src="..." class="card-img" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img src="..." class="card-img" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </article>
+            <article class="row mt-5 text-center">
+                <div class="col">
+                    <h2>Advisories</h2>
+                </div>
+            </article>
+            <article class="row mt-3">
+                <div class="col-sm">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><img src="images/medical-mask.png" alt="Mask" class="adv-icon img-fluid"/> Wear a Mask when in public.</li>
+                        <li class="list-group-item"><img src="images/safe-distancing.png" alt="Safe Distance" class="adv-icon img-fluid"/> Keep 1m apart from others.</li>
+                        <li class="list-group-item"><img src="images/pax-limitation.png" alt="Up to 8 in Group" class="adv-icon img-fluid"/> No more than 8 in a group.</li>
+                    </ul>
+                    
+                </div>
+                <div class="col-sm">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><img src="images/tracetogether-logo.png" alt="Trace Together" class="adv-icon img-fluid"/> Install Trace Together App</li>
+                        <li class="list-group-item"><img src="images/liquid-soap.png" alt="Wash your hands" class="adv-icon img-fluid"/> Wash your hands regularly</li>
+                        <li class="list-group-item"><img src="images/qr-code-scan.png" alt="Check in and out" class="adv-icon img-fluid"/> Check in & out when required</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="row mt-3 text-center">
+                <div class="col-sm">
+                    <img src="images/safe-shopping_eng.jpg" class="adv-poster img-fluid"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/safe-outdoors_eng.jpg" class="adv-poster img-fluid"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/safe-dining_eng.jpg" class="adv-poster img-fluid"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/safe-commuting_eng.jpg" class="adv-poster img-fluid"/>
+                </div>
+            </article>
+            <article class="row mt-5 text-center">
+                <div class="col">
+                    <button type="button" class="btn btn-dark" id="swap_en">English</button>
+                    <button type="button" class="btn btn-dark" id="swap_ch">简体中文</button>
+                    <button type="button" class="btn btn-dark" id="swap_ml">Bahasa Melayu</button>
+                    <button type="button" class="btn btn-dark" id="swap_tl">தமிழ்</button>
+                </div>
             </article>
         </section>
         <footer class="container mt-5 text-center">
