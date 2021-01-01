@@ -22,6 +22,15 @@ h1, h2, h3 {
     border: 3px solid black;
 }
 
+.news-img {
+    width: 480px;
+}
+
+sup {
+    font-size: 16px;
+    font-family: Expletus Sans, 'sans-serif';
+    margin-top: 0;
+}
 /* Custom Media Query Styles */
 @media only screen and (max-width: 576px) {
     .order1 {

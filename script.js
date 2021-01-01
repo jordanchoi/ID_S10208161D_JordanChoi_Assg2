@@ -29,27 +29,53 @@ $(document).ready(function() {
         })
 
         // news api
-        var newsParams = {
-            "country": "sg",
-            "apiKey": "d1c7ff50b90a4d8babc2ef549ad4505c",
-            "top-headlines": "Covid-19"
-        }
 
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            contentType: "text/plain",
-            url: "https://newsapi.org/v2/top-headlines?q=covid-19",
-            headers: {
+        fetch('https://gnews.io/api/v4/top-headlines?token=97a0880c40b7e3640d55b48f6553b8f2&q="covid-19"&country=sg&lang=en')
+            .then(function (response) {
+                return response.json();
+        })
+            .then(function (data) {
+                // article 1
+                $("#article1-img").attr('src', data.articles[0].image);
+                $("#article-title1").text(data.articles[0].title);
+                $("#article-content1").text(data.articles[0].description);
+                $("#article1-link").attr('href', data.articles[0].url);
+                var publishedDate = new Date(data.articles[0].publishedAt);
+                var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
+                $("#article1-date").text(showDate);
+                // article 2
+                $("#article2-img").attr('src', data.articles[1].image);
+                $("#article-title2").text(data.articles[1].title);
+                $("#article-content2").text(data.articles[1].description);
+                $("#article2-link").attr('href', data.articles[1].url);
+                var publishedDate = new Date(data.articles[1].publishedAt);
+                var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
+                $("#article2-date").text(showDate);
+                // article 3
+                $("#article3-img").attr('src', data.articles[2].image);
+                $("#article-title3").text(data.articles[2].title);
+                $("#article-content3").text(data.articles[2].description);
+                $(".article3-link").attr('href', data.articles[2].url);
+                var publishedDate = new Date(data.articles[2].publishedAt);
+                var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
+                $("#article3-date").text(showDate);
+                // article 4
+                $("#article4-img").attr('src', data.articles[3].image);
+                $("#article-title4").text(data.articles[3].title);
+                $("#article-content4").text(data.articles[3].description);
+                $(".article4-link").attr('href', data.articles[3].url);
+                var publishedDate = new Date(data.articles[3].publishedAt);
+                var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
+                $("#article4-date").text(showDate);
+                //article 5
+                $("#article5-img").attr('src', data.articles[4].image);
+                $("#article-title5").text(data.articles[4].title);
+                $("#article-content5").text(data.articles[4].description);
+                $(".article5-link").attr('href', data.articles[4].url);
+                var publishedDate = new Date(data.articles[4].publishedAt);
+                var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
+                $("#article5-date").text(showDate);
 
-            },
-            data: {
-                country: 'sg',
-                apiKey: 'd1c7ff50b90a4d8babc2ef549ad4505c'
-            },
-            success: function(data) {
-                console.log(data)
-            },
         });
         
 
@@ -86,6 +112,24 @@ $(document).ready(function() {
                 $("#total-cases-figure").text(data.cases);
                 $("#recovered-figure").text(data.recovered);
                 $("#deceased-figure").text(data.deaths);
+                if (data.todayCases != null) {
+                    $("#new-cases").text("+" + data.todayCases + " today");
+                }
+                else {
+                    $("#new-cases").text("+0 today");
+                }
+                if (data.todayRecovered != null) {
+                    $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
+                }
+                else {
+                    $("#new-recovery-figure").text("+0 today");
+                }
+                if (data.todayDeaths != null) {
+                    $("#new-deaths-figure").text("+" + data.todayDeaths + " today");
+                }
+                else {
+                    $("#new-deaths-figure").text("+0 today");
+                }
                 makeMainChart(data);
             },
         });
