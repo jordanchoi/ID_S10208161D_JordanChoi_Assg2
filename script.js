@@ -236,7 +236,6 @@ $(document).ready(function() {
             $('#country-input').val('');
             requestMainData(query);
             localStats.abort();
-            // activeCasesChart.destroy();
             query = query.toLowerCase();
 
             if (query == 'singapore' || query == 'sg') {
@@ -272,9 +271,8 @@ $(document).ready(function() {
                         $("#community-facilities-figure").text(data.inCommunityFacilites);
 
                         removeData(activeCasesChart);
-                        activeCasesChart.data.datasets[0].data[0] = data.criticalHospitalized;
-                        addData(activeCasesChart, "In Community Facilities", data.inCommunityFacilites);
-                        addData(activeCasesChart, "Stablized in Hospital", data.stableHospitalized);
+                        activeCasesChart.data.labels = ["In Critical Condition", "In Community Facilities", "Stablized in Hospital"];
+                        activeCasesChart.data.datasets[0].data = [data.criticalHospitalized, data.inCommunityFacilites, data.stableHospitalized];
                         activeCasesChart.update();
                     },
                 });
