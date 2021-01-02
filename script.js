@@ -1,4 +1,138 @@
+// start of main total case chart (1)
+var ctx = document.getElementById("totalCasesChart");
+var totalCasesChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["Deceased", "Recovered"],
+        datasets: [{
+            label: 'Total Cases',
+            data: [null, null],
+            backgroundColor: [
+                'rgba(186, 0, 0, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 0
+        }]
+    },
+        options: {
+            legend: {
+                position: 'right'
+            }
+        }
+})
+// end of main total case chart (1)
+// start of local condition chart (2)
+var ctx2 = document.getElementById("activeCasesChart");
+var activeCasesChart = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: ["In Critical Condition", "In Community Facilities", "Stablized in Hospital"],
+        datasets: [{
+            label: 'Active Cases Conditions',
+            data: [null, null, null],
+            backgroundColor: [
+                'rgba(186, 0, 0, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 0
+        }]
+    },
+        options: {
+            legend: {
+                position: 'left'
+            }
+        }
+})
+// end of local condition chart (2)
+
 $(document).ready(function() {
+    var query = "Singapore";
+
+    function requestMainData(query) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            contentType: "text/plain",
+            url: "https://corona.lmao.ninja/v2/countries/" + query,
+            headers: {
+
+            },
+            data: {
+                yesterday: "false",
+                strict: "true",
+                allowNull: "true"
+            },
+            success: function(data) {
+                $("#data-flag").attr("src", data.countryInfo.flag);
+                $('#scope').text(data.country);
+
+                if (data.cases != null) {
+                    $("#total-cases-figure").text(data.cases);
+                } 
+                else {
+                    $("#total-cases-figure").text("0");
+                }
+                if (data.recovered != null) {
+                    $("#recovered-figure").text(data.recovered);
+                }
+                else {
+                    $("#recovered-figure").text("0");
+                }
+                if (data.deaths != null) {
+                    $("#deceased-figure").text(data.deaths);
+                }
+                else {
+                    $("#deceased-figure").text("0");
+                }
+                if (data.todayCases != null) {
+                    $("#new-cases").text("+" + data.todayCases + " today");
+                }
+                else {
+                    $("#new-cases").text("+0 today");
+                }
+                if (data.todayRecovered != null) {
+                    $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
+                }
+                else {
+                    $("#new-recovery-figure").text("+0 today");
+                }
+                if (data.todayDeaths != null) {
+                    $("#new-deaths-figure").text("+" + data.todayDeaths + " today");
+                }
+                else {
+                    $("#new-deaths-figure").text("+0 today");
+                }
+                
+                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered];
+                totalCasesChart.update();
+            },
+        });
+    }
+    requestMainData(query);
+
+    // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        contentType: "text/plain",
+        url: "https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true",
+        headers: {
+
+        },
+        data: {
+
+        },
+        success: function(data) {
+            $("#active-cases-figure").text(data.activeCases);
+            $("#stable-cases-figure").text(data.stableHospitalized);
+            $("#icu-cases-figure").text(data.criticalHospitalized);
+            $("#community-facilities-figure").text(data.inCommunityFacilites);
+            activeCasesChart.data.datasets[0].data = [data.criticalHospitalized, data.inCommunityFacilites, data.stableHospitalized];
+            activeCasesChart.update();
+        },
+    });
+
     // advisories language buttons
     $('#swap_en').click(function(e) {                                           // english
         $('#safe-shop').attr('src', 'images/safe-shopping_eng.jpg');
@@ -77,250 +211,12 @@ $(document).ready(function() {
             $("#article5-date").text(showDate);
     });
     */
-
-        // charts fx
-        function makeMainChart(d) {
-            var ctx = document.getElementById("totalCasesChart");
-            var totalCasesChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ["Deceased", "Recovered"],
-                datasets: [{
-                    label: 'Test',
-                    data: [0,0],
-                    data: [d.deaths, d.recovered],
-                    backgroundColor: [
-                        'rgba(186, 0, 0, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    borderWidth: 0
-                }]
-            },
-                options: {
-                    legend: {
-                        position: 'right'
-                    }
-                }
-            })
-
-            return totalCasesChart;
-        };
-
-    function makeMainChart(d) {
-        var ctx = document.getElementById("totalCasesChart");
-        var totalCasesChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["Deceased", "Recovered"],
-            datasets: [{
-                label: 'Total Cases',
-                data: [d.deaths, d.recovered],
-                backgroundColor: [
-                    'rgba(186, 0, 0, 1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 0
-            }]
-        },
-            options: {
-                legend: {
-                    position: 'right'
-                }
-            }
-        })
-    };
-
-    function makeLocalChart(d) {
-        var ctx = document.getElementById("activeCasesChart");
-        var activeCasesChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["In Critical Condition", "In Community Facilities", "Stablized in Hospital"],
-            datasets: [{
-                label: 'Active Cases Conditions',
-                data: [d.criticalHospitalized, d.inCommunityFacilites, d.stableHospitalized],
-                backgroundColor: [
-                    'rgba(186, 0, 0, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                ],
-                borderWidth: 0
-            }]
-        },
-            options: {
-                legend: {
-                    position: 'left'
-                }
-            }
-        })
-    }
-
-        function makeRequestChart(d) {
-            var rctx = document.getElementById("totalCasesChart");
-            var totalCasesChart = new Chart(rctx, {
-            type: 'pie',
-            data: {
-                labels: ["Deceased", "Recovered"],
-                datasets: [{
-                    label: 'Requested Total Cases',
-                    data: [d.deaths, d.recovered],
-                    backgroundColor: [
-                        'rgba(186, 0, 0, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    borderWidth: 0
-                }]
-            },
-                options: {
-                    legend: {
-                        position: 'right'
-                    }
-                }
-            })
-        };
-
-        // statistics api
-        // main stats (total cases, discharged and deceased figures)
-
-        var query = "Singapore";
-
-        function requestMainData(country) {
-            var initialAjax = $.ajax({
-                type: "GET",
-                dataType: "json",
-                contentType: "text/plain",
-                url: "https://corona.lmao.ninja/v2/countries/" + query,
-                headers: {
-    
-                },
-                data: {
-                    yesterday: "false",
-                    strict: "true",
-                    allowNull: "true"
-                },
-                success: function(data) {
-                    $("#data-flag").attr("src", data.countryInfo.flag);
-                    $('#scope').text(data.country);
-
-                    if (data.cases != null) {
-                        $("#total-cases-figure").text(data.cases);
-                    } 
-                    else {
-                        $("#total-cases-figure").text("0");
-                    }
-                    if (data.recovered != null) {
-                        $("#recovered-figure").text(data.recovered);
-                    }
-                    else {
-                        $("#recovered-figure").text("0");
-                    }
-                    if (data.deaths != null) {
-                        $("#deceased-figure").text(data.deaths);
-                    }
-                    else {
-                        $("#deceased-figure").text("0");
-                    }
-                
-                    if (data.todayCases != null) {
-                        $("#new-cases").text("+" + data.todayCases + " today");
-                    }
-                    else {
-                        $("#new-cases").text("+0 today");
-                    }
-                    if (data.todayRecovered != null) {
-                        $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
-                    }
-                    else {
-                        $("#new-recovery-figure").text("+0 today");
-                    }
-                    if (data.todayDeaths != null) {
-                        $("#new-deaths-figure").text("+" + data.todayDeaths + " today");
-                    }
-                    else {
-                        $("#new-deaths-figure").text("+0 today");
-                    }
-                    makeMainChart(data);
-                },
-            });
-            return initialAjax; 
-        }
-        
-        requestMainData(query);
-
-        // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            contentType: "text/plain",
-            url: "https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true",
-            headers: {
-
-            },
-            data: {
-
-            },
-            success: function(data) {
-                $("#active-cases-figure").text(data.activeCases);
-                $("#stable-cases-figure").text(data.stableHospitalized);
-                $("#icu-cases-figure").text(data.criticalHospitalized);
-                $("#community-facilities-figure").text(data.inCommunityFacilites);
-                makeLocalChart(data);
-            },
-        });
-
+  
         // country button
-        $('#country-Btn').click(function(e){
+        $('#country-search').submit(function(e){
             e.preventDefault();
             query = $('#country-input').val();
             $('#country-input').val('');
             requestMainData(query);
-            
-            // fetch("https://corona.lmao.ninja/v2/countries/" + query)
-            // .then(function (response) {
-            //     return response.json();
-            // })
-            // .then(function (data) {
-            //     initialAjax.abort();
-            //     $("#data-flag").attr("src", data.countryInfo.flag);
-            //     $('#scope').text(data.country);
-            //         if (data.cases != null) {
-            //             $("#total-cases-figure").text(data.cases);
-            //         } 
-            //         else {
-            //             $("#total-cases-figure").text("0");
-            //         }
-            //         if (data.recovered != null) {
-            //             $("#recovered-figure").text(data.recovered);
-            //         }
-            //         else {
-            //             $("#recovered-figure").text("0");
-            //         }
-            //         if (data.deaths != null) {
-            //             $("#deceased-figure").text(data.deaths);
-            //         }
-            //         else {
-            //             $("#deceased-figure").text("0");
-            //         }
-                
-            //         if (data.todayCases != null) {
-            //             $("#new-cases").text("+" + data.todayCases + " today");
-            //         }
-            //         else {
-            //             $("#new-cases").text("+0 today");
-            //         }
-            //         if (data.todayRecovered != null) {
-            //             $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
-            //         }
-            //         else {
-            //             $("#new-recovery-figure").text("+0 today");
-            //         }
-            //         if (data.todayDeaths != null) {
-            //             $("#new-deaths-figure").text("+" + data.todayDeaths + " today");
-            //         }
-            //         else {
-            //             $("#new-deaths-figure").text("+0 today");
-            //         }
-            //     makeRequestChart(data)
-            // })
         });
 });
