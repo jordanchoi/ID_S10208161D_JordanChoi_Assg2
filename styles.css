@@ -1,3 +1,6 @@
+body {
+    font-family: Open Sans, 'sans-serif';
+}
 h1, h2, h3 {
     font-family: Montserrat, 'sans-serif';
 }
@@ -41,20 +44,40 @@ sup {
 }
 .sidebar {
     height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+    font-family: Open Sans, 'sans-serif';
+    font-size: 14px;
 }
 
+.sidebar a {
+    color: black;
+}
+
+.sidebar a:hover {
+    color: grey;
+}
 footer {
     height: 50px;
+}
+.quick-change {
+    width: 38px;
+    margin: 0px 5px;
+}
+@media only screen and (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        padding-top: 5rem;
+        bottom: 0;
+    }
 }
 /* Custom Media Query Styles */
 @media only screen and (max-width: 576px) {
     .order1 {
     order: 2;
     margin-bottom: 25px;
-}
+    }
 
     .order2 {
         order: 3;
@@ -62,5 +85,9 @@ footer {
 
     .order3 {
         order: 1;
+    }
+
+    .sidebar {
+        position: relative;
     }
 }

@@ -41,3 +41,7 @@ MOH, Safe Outdoor TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovid
 MOH, Safe Dining TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-dining_tl.jpg
 
 MOH, Safe Commuting TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_tl.jpg
+
+Freepik, Global Icon, Retrieved from https://www.flaticon.com/free-icon/world_52349?term=global&page=1&position=11&related_item_id=52349
+
+Freepik, Country Flags, Retrieved from https://www.flaticon.com/packs/country-flags?k=1609656054883

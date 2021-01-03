@@ -83,6 +83,7 @@ $(document).ready(function() {
             success: function(data) {
                 $("#data-flag").attr("src", data.countryInfo.flag);
                 $('#scope').text(data.country);
+                $('#country-name').text(data.country)
 
                 if (data.cases != null) {
                     $("#total-cases-figure").text(data.cases);
@@ -124,31 +125,38 @@ $(document).ready(function() {
                 totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered];
                 totalCasesChart.update();
             },
+            error: function() {
+                alert('An error occurred. You may have entered an invalid country.')
+            }
         });
     }
     requestMainData(query);
     
+    function requestLocalData() {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            contentType: "text/plain",
+            url: "https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true",
+            headers: {
+    
+            },
+            data: {
+    
+            },
+            success: function(data) {
+                $("#active-cases-figure").text(data.activeCases);
+                $("#stable-cases-figure").text(data.stableHospitalized);
+                $("#icu-cases-figure").text(data.criticalHospitalized);
+                $("#community-facilities-figure").text(data.inCommunityFacilites);
+                activeCasesChart.data.datasets[0].data = [data.criticalHospitalized, data.inCommunityFacilites, data.stableHospitalized];
+                activeCasesChart.update();
+            },
+        });
+    }
+    requestLocalData();
     // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
-    var localStats = $.ajax({
-        type: "GET",
-        dataType: "json",
-        contentType: "text/plain",
-        url: "https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true",
-        headers: {
-
-        },
-        data: {
-
-        },
-        success: function(data) {
-            $("#active-cases-figure").text(data.activeCases);
-            $("#stable-cases-figure").text(data.stableHospitalized);
-            $("#icu-cases-figure").text(data.criticalHospitalized);
-            $("#community-facilities-figure").text(data.inCommunityFacilites);
-            activeCasesChart.data.datasets[0].data = [data.criticalHospitalized, data.inCommunityFacilites, data.stableHospitalized];
-            activeCasesChart.update();
-        },
-    });
+    
 
     // advisories language buttons
     $('#swap_en').click(function(e) {                                           // english
@@ -226,106 +234,115 @@ $(document).ready(function() {
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article5-date").text(showDate);
     });
-  
-        // country button
+
+    function updateData(query) {
+        requestMainData(query);
+        query = query.toLowerCase();
+
+        if (query == 'singapore' || query == 'sg') {
+            $('.dorscon-level').show();
+            $('.phase-level').show();
+
+            $("#stable-cases-figure").addClass('text-primary');
+            $("#community-facilities-figure").addClass("text-primary");
+            $("#stable-cases-figure").addClass('large-text');
+            $("#community-facilities-figure").addClass("large-text");
+            $("#stable-cases-figure").css({
+                'font-family' : 'Expletus Sans, "sans-serif"'
+            });
+            $("#community-facilities-figure").css({
+                'font-family' : 'Expletus Sans, "sans-serif"'
+            });
+
+            removeData(activeCasesChart);
+            activeCasesChart.data.labels = ["In Critical Condition", "In Community Facilities", "Stablized in Hospital"];
+            requestLocalData();
+            activeCasesChart.update();
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                contentType: "text/plain",
+                url: "https://corona.lmao.ninja/v2/countries/" + query,
+                headers: {
+
+                },
+                data: {
+                    yesterday: "false",
+                    strict: "true",
+                    allowNull: "true"
+                },
+                success: function(data) {
+                    $('.dorscon-level').hide();
+                    $('.phase-level').hide();        
+                    $("#stable-cases-figure").text("No Data Available");
+                    $("#community-facilities-figure").text("No Data Available");
+                    $("#stable-cases-figure").removeClass('text-primary');
+                    $("#community-facilities-figure").removeClass("text-primary");
+                    $("#stable-cases-figure").removeClass('large-text');
+                    $("#community-facilities-figure").removeClass("large-text");
+                    $("#stable-cases-figure").css({
+                        'color' : 'red',
+                        'font-family' : 'Montserrat, "sans-serif"'
+                    });
+                    $("#community-facilities-figure").css({
+                        'color' : 'red',
+                        'font-family' : 'Montserrat, "sans-serif"'
+                    });
+
+                    if (data.active != null) {
+                        $("#active-cases-figure").text(data.active);
+                    } 
+                    else {
+                        $("#active-cases-figure").text("0");
+                    }
+                    if (data.critical != null) {
+                        $("#icu-cases-figure").text(data.critical);
+                    }
+                    else {
+                        $("#icu-cases-figure").text("0");
+                    }
+
+                    activeCasesChart.data.labels = ["In Critical Condition", "Others"];
+                    activeCasesChart.data.datasets[0].data = [data.critical, data.active - data.critical];
+                    activeCasesChart.update();
+                },
+            });
+        }
+    }
+        // country-search button
         $('#country-search').submit(function(e){
             e.preventDefault();
             query = $('#country-input').val();
             $('#country-input').val('');
-            requestMainData(query);
-            localStats.abort();
-            query = query.toLowerCase();
-
-            if (query == 'singapore' || query == 'sg') {
-                $('.dorscon-level').show();
-                $('.phase-level').show();
-
-                $("#stable-cases-figure").addClass('text-primary');
-                $("#community-facilities-figure").addClass("text-primary");
-                $("#stable-cases-figure").addClass('large-text');
-                $("#community-facilities-figure").addClass("large-text");
-                $("#stable-cases-figure").css({
-                    'font-family' : 'Expletus Sans, "sans-serif"'
-                });
-                $("#community-facilities-figure").css({
-                    'font-family' : 'Expletus Sans, "sans-serif"'
-                });
-
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    contentType: "text/plain",
-                    url: "https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true",
-                    headers: {
-            
-                    },
-                    data: {
-            
-                    },
-                    success: function(data) {
-                        $("#active-cases-figure").text(data.activeCases);
-                        $("#stable-cases-figure").text(data.stableHospitalized);
-                        $("#icu-cases-figure").text(data.criticalHospitalized);
-                        $("#community-facilities-figure").text(data.inCommunityFacilites);
-
-                        removeData(activeCasesChart);
-                        activeCasesChart.data.labels = ["In Critical Condition", "In Community Facilities", "Stablized in Hospital"];
-                        activeCasesChart.data.datasets[0].data = [data.criticalHospitalized, data.inCommunityFacilites, data.stableHospitalized];
-                        activeCasesChart.update();
-                    },
-                });
-            }
-            else {
-                $('.dorscon-level').hide();
-                $('.phase-level').hide();
-
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    contentType: "text/plain",
-                    url: "https://corona.lmao.ninja/v2/countries/" + query,
-                    headers: {
-    
-                    },
-                    data: {
-                        yesterday: "false",
-                        strict: "true",
-                        allowNull: "true"
-                    },
-                    success: function(data) {
-                        $("#stable-cases-figure").text("No Data Available");
-                        $("#community-facilities-figure").text("No Data Available");
-                        $("#stable-cases-figure").removeClass('text-primary');
-                        $("#community-facilities-figure").removeClass("text-primary");
-                        $("#stable-cases-figure").removeClass('large-text');
-                        $("#community-facilities-figure").removeClass("large-text");
-                        $("#stable-cases-figure").css({
-                            'color' : 'red',
-                            'font-family' : 'Montserrat, "sans-serif"'
-                        });
-                        $("#community-facilities-figure").css({
-                            'color' : 'red',
-                            'font-family' : 'Montserrat, "sans-serif"'
-                        });
-    
-                        if (data.active != null) {
-                            $("#active-cases-figure").text(data.active);
-                        } 
-                        else {
-                            $("#active-cases-figure").text("0");
-                        }
-                        if (data.critical != null) {
-                            $("#icu-cases-figure").text(data.critical);
-                        }
-                        else {
-                            $("#icu-cases-figure").text("0");
-                        }
-
-                        activeCasesChart.data.labels = ["In Critical Condition", "Others"];
-                        activeCasesChart.data.datasets[0].data = [data.critical, data.active - data.critical];
-                        activeCasesChart.update();
-                    },
-                });
-            }
+            updateData(query);
         });
+
+        // quick countries buttons
+        $('#sg-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'Singapore';
+            updateData(query);
+        });
+
+        $('#us-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'USA';
+            updateData(query);
+        });
+
+        $('#in-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'India';
+            updateData(query);
+        });
+
+        $('#bra-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'Brazil';
+            updateData(query);
+        });
+
+        
 });
