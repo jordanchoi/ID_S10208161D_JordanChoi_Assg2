@@ -63,8 +63,9 @@ function removeData(chart) {
     chart.update();
 }
 
+
 $(document).ready(function() {
-    var query = "Singapore";
+    var query = 'Singapore';
 
     function requestMainData(query) {
         $.ajax({
@@ -131,6 +132,79 @@ $(document).ready(function() {
         });
     }
     requestMainData(query);
+    requestLocalData();
+    
+    function requestGlobalData() {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            contentType: "text/plain",
+            url: "https://corona.lmao.ninja/v2/all?yesterday=false",
+            success: function(data) {
+                $("#data-flag").attr('src', 'images/global-icon.png');
+                $('#scope').text("Global");
+                $('#country-name').text("Global");
+                $("#total-cases-figure").text(data.cases);
+                $("#recovered-figure").text(data.recovered);
+                $("#deceased-figure").text(data.deaths);
+                if (data.todayCases != null) {
+                    $("#new-cases").text("+" + data.todayCases + " today");
+                }
+                else {
+                    $("#new-cases").text("+0 today");
+                    console.log(data.todayCases);
+                }
+                if (data.todayRecovered != null) {
+                    $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
+                }
+                else {
+                    $("#new-recovery-figure").text("+0 today");
+                }
+                if (data.todayDeaths != null) {
+                    $("#new-deaths-figure").text("+" + data.todayDeaths + " today");
+                }
+                else {
+                    $("#new-deaths-figure").text("+0 today");
+                }
+                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered];
+                totalCasesChart.update();
+
+                $('.dorscon-level').hide();
+                $('.phase-level').hide();        
+                $("#stable-cases-figure").text("No Data Available");
+                $("#community-facilities-figure").text("No Data Available");
+                $("#stable-cases-figure").removeClass('text-primary');
+                $("#community-facilities-figure").removeClass("text-primary");
+                $("#stable-cases-figure").removeClass('large-text');
+                $("#community-facilities-figure").removeClass("large-text");
+                $("#stable-cases-figure").css({
+                    'color' : 'red',
+                    'font-family' : 'Montserrat, "sans-serif"'
+                });
+                $("#community-facilities-figure").css({
+                    'color' : 'red',
+                    'font-family' : 'Montserrat, "sans-serif"'
+                });
+
+                if (data.active != null) {
+                    $("#active-cases-figure").text(data.active);
+                } 
+                else {
+                    $("#active-cases-figure").text("0");
+                }
+                if (data.critical != null) {
+                    $("#icu-cases-figure").text(data.critical);
+                }
+                else {
+                    $("#icu-cases-figure").text("0");
+                }
+
+                activeCasesChart.data.labels = ["In Critical Condition", "Others"];
+                activeCasesChart.data.datasets[0].data = [data.critical, data.active - data.critical];
+                activeCasesChart.update();
+            },
+        })
+    };
     
     function requestLocalData() {
         $.ajax({
@@ -154,7 +228,7 @@ $(document).ready(function() {
             },
         });
     }
-    requestLocalData();
+
     // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
     
 
@@ -235,11 +309,11 @@ $(document).ready(function() {
             $("#article5-date").text(showDate);
     });
 
-    function updateData(query) {
-        requestMainData(query);
-        query = query.toLowerCase();
+    function updateData(q) {
+        requestMainData(q);
+        q = q.toLowerCase();
 
-        if (query == 'singapore' || query == 'sg') {
+        if (q == 'singapore' || q == 'sg') {
             $('.dorscon-level').show();
             $('.phase-level').show();
 
@@ -342,6 +416,11 @@ $(document).ready(function() {
             e.preventDefault();
             query = 'Brazil';
             updateData(query);
+        });
+
+        $('#global-stats').on('click', function(e) {
+            e.preventDefault();
+            requestGlobalData();
         });
 
         
