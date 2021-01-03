@@ -26,10 +26,28 @@ h1, h2, h3 {
     width: 480px;
 }
 
+.last-item {
+    padding-bottom: 75px;
+}
+
+.figures-container {
+    height: 380px;
+}
+
 sup {
     font-size: 16px;
     font-family: Expletus Sans, 'sans-serif';
     margin-top: 0;
+}
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+footer {
+    height: 50px;
 }
 /* Custom Media Query Styles */
 @media only screen and (max-width: 576px) {

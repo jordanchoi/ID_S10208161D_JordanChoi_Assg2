@@ -16,7 +16,7 @@ var totalCasesChart = new Chart(ctx, {
     },
         options: {
             legend: {
-                position: 'bottom'
+                position: 'right'
             }
         }
 })
@@ -40,7 +40,7 @@ var activeCasesChart = new Chart(ctx2, {
     },
         options: {
             legend: {
-                position: 'bottom'
+                position: 'left'
             }
         }
 })
@@ -180,6 +180,7 @@ $(document).ready(function() {
     })
 
     // news api to retrieve latest Singapore news in English related to Covid-19 - PARAMS passed in URL. 100 Requests Limit.
+    /*
     fetch('https://gnews.io/api/v4/top-headlines?token=97a0880c40b7e3640d55b48f6553b8f2&q="covid-19"&country=sg&lang=en')
         .then(function (response) {
             return response.json();
@@ -226,6 +227,7 @@ $(document).ready(function() {
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article5-date").text(showDate);
     });
+    */
   
         // country button
         $('#country-search').submit(function(e){
