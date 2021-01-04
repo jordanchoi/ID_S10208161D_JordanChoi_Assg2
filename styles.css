@@ -29,10 +29,6 @@ h1, h2, h3 {
     width: 480px;
 }
 
-.last-item {
-    padding-bottom: 75px;
-}
-
 .figures-container {
     height: 380px;
 }
@@ -71,6 +67,10 @@ footer {
         padding-top: 5rem;
         bottom: 0;
     }
+
+    .figures-container {
+        height: 380px;
+    }
 }
 /* Custom Media Query Styles */
 @media only screen and (max-width: 576px) {
@@ -89,5 +89,9 @@ footer {
 
     .sidebar {
         position: relative;
+    }
+
+    .figures-container {
+        height: 100%;
     }
 }
