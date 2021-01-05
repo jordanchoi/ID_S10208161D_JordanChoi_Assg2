@@ -119,6 +119,11 @@ Live Demo:
 ## Testing
 
 ## Credits
+* Framework
+  * [Bootstrap 5.0](https://getbootstrap.com/)
+* Libraries & Scripts
+  * [Chart.js](https://www.chartjs.org/)
+  * [jQuery](https://jquery.com/)
 * Fonts
   * **Google Fonts** - Expletus Sans, Montserrat, Nunito Sans, Quattrocento Sans, Source Sans Pro, Open Sans
 
@@ -176,3 +181,5 @@ Live Demo:
     * MOH, Safe Commuting TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_tl.jpg
 
 ## References & Acknowledgments
+* Themes
+  * [Bootstrap Example - Dashboard](https://getbootstrap.com/docs/5.0/examples/dashboard/ was referenced for the layout of the site.
