@@ -152,7 +152,7 @@ $(document).ready(function() {
             contentType: "text/plain",
             url: "https://corona.lmao.ninja/v2/all?yesterday=false",
             success: function(data) {
-                $("#data-flag").attr('src', 'images/global-icon.png');
+                $("#data-flag").attr('src', 'images/icons/global-icon.png');
                 $('#scope').text("Global");
                 $('#country-name').text("Global");
                 $("#total-cases-figure").text(data.cases);
