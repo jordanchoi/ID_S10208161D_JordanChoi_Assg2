@@ -182,4 +182,4 @@ Live Demo:
 
 ## References & Acknowledgments
 * Themes
-  * [Bootstrap Example - Dashboard](https://getbootstrap.com/docs/5.0/examples/dashboard/ was referenced for the layout of the site.
+  * [Bootstrap Example - Dashboard](https://getbootstrap.com/docs/5.0/examples/dashboard/) was referenced for the layout of the site.
