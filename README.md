@@ -96,7 +96,11 @@ Live Demo:
   * jQuery was used to manipulate DOMs of the website. Such as hiding of elements, change of image src, modifying the data displayed based on the API fetch.
 * API
   * APIs were used to retrieve the necessary data such as the COVID-19 countries and global statistics and news article.
-
+* JSON
+  * JSON was used to create and retrieve Local Storage.
+* Adobe XD
+  * Adobe XD
+    * Adobe XD was used to create and design the wireframe of the site.
 ### Scripts Used
 * [Chart.js](https://www.chartjs.org/)
   * Chart.js was used to create chart based on the data retrieved by API.
@@ -111,3 +115,63 @@ Live Demo:
 * [Tugkan COVID-19 SG API](https://apify.com/tugkan/covid-sg)
   * Tugkan COVID-19 SG API was used to retrieve local COVID-19 Statistics such as the number of active cases in Singapore.
 
+## Testing
+
+## Credits
+* Fonts
+  * **Google Fonts** - Expletus Sans, Montserrat, Nunito Sans, Quattrocento Sans, Source Sans Pro, Open Sans
+
+* COVID-19 Statistics (Total Cases, Recovered Cases, Deceased Cases)
+  * [Disease-SH API](https://github.com/disease-sh/API)
+
+* COVID-19 Statistics (Local Cases, Active Cases, In Community Facilities, Hospitalized & Stablized)
+  * [Tugkan COVID-19 SG API](https://apify.com/tugkan/covid-sg)
+
+* News Articles
+  * [GNews API](https://gnews.io/)
+
+* Media
+  * Countries Icon
+    * Freepik, Global Icon, Retrieved from https://www.flaticon.com/free-icon/world_52349?term=global&page=1&position=11&related_item_id=52349
+    * Freepik, Country Flags, Retrieved from https://www.flaticon.com/packs/country-flags?k=1609656054883
+  * COVID-19 Advisory Icons
+    * Freepik, Mask, Retrieved from https://www.flaticon.com/free-icon/medical-mask_2949936?related_item_id=2949936&term=mask&related_item_id=2949936
+    * MOH, Trace Together Icon, Retrieved from https://www.moh.gov.sg/covid-19
+    * Pixel Perfect, Pax Limitation Icon, Retrieved from https://www.flaticon.com/free-icon/people_3922935?term=safe%20distancing&page=1&position=31&related_item_id=3922935
+    * Freepik, Safe Distancing Icon, Retrieved from https://www.flaticon.com/free-icon/queue_2949754?term=safe%20distancing&page=1&position=1&related_item_id=2949754
+    * Freepik, Wash Hand Icon, Retrieved from https://www.flaticon.com/free-icon/liquid-soap_2913371?term=wash%20hands&page=1&position=4&related_item_id=2913371
+    * Freepik, QR code Scan Icon, Retrieved from https://www.flaticon.com/free-icon/qr-code-scan_3126504?term=scan%20qr&page=1&position=8&related_item_id=3126504
+  * COVID-19 Advisory Posters
+    * MOH, Safe Shopping EN, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-shopping_eng.jpg
+
+    * MOH, Safe Outdoor EN, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-outdoors_eng.jpg
+
+    * MOH, Safe Dining EN, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-dining_eng.jpg
+
+    * MOH, Safe Commuting EN, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_eng.jpg
+
+    * MOH, Safe Shopping CH, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-shopping_chi.jpg
+
+    * MOH, Safe Outdoor CH, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-outdoors_chi.jpg
+
+    * MOH, Safe Dining CH, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-dining_chi.jpg
+
+    * MOH, Safe Commuting CH, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_chi.jpg
+
+    * MOH, Safe Shopping ML, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-shopping_ml.jpg
+
+    * MOH, Safe Outdoor ML, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-outdoors_ml.jpg
+
+    * MOH, Safe Dining ML, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-dining_ml.jpg
+
+    * MOH, Safe Commuting ML, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_ml.jpg
+
+    * MOH, Safe Shopping TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-shopping_tl.jpg
+
+    * MOH, Safe Outdoor TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-outdoors_tl.jpg
+
+    * MOH, Safe Dining TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-dining_tl.jpg
+
+    * MOH, Safe Commuting TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_tl.jpg
+
+## References & Acknowledgments
