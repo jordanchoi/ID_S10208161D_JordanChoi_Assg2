@@ -1,5 +1,5 @@
 // start of main total case chart (1)
-var ctx = document.getElementById('totalCasesChart');
+var ctx = document.getElementById("totalCasesChart");
 var totalCasesChart = new Chart(ctx, {
     type: 'pie',
     data: {
@@ -22,7 +22,7 @@ var totalCasesChart = new Chart(ctx, {
 })
 // end of main total case chart (1)
 // start of local condition chart (2)
-var ctx2 = document.getElementById('activeCasesChart');
+var ctx2 = document.getElementById("activeCasesChart");
 var activeCasesChart = new Chart(ctx2, {
     type: 'pie',
     data: {
@@ -63,20 +63,10 @@ function removeData(chart) {
     chart.update();
 }
 
-function setLocalStorage(q) {
-    localStorage.setItem('country', q);
-}
-
 
 $(document).ready(function() {
-    // var query = 'Singapore';
-    var query = localStorage.getItem('country');
+    var query = 'Singapore';
 
-    if (query == null) {
-        query = 'Singapore';
-        setLocalStorage(query);     
-    }
-    
     function requestMainData(query) {
         $.ajax({
             type: "GET",
@@ -142,8 +132,7 @@ $(document).ready(function() {
         });
     }
     requestMainData(query);
-    updateData(query);
-    // requestLocalData();
+    requestLocalData();
     
     function requestGlobalData() {
         $.ajax({
@@ -163,6 +152,7 @@ $(document).ready(function() {
                 }
                 else {
                     $("#new-cases").text("+0 today");
+                    console.log(data.todayCases);
                 }
                 if (data.todayRecovered != null) {
                     $("#new-recovery-figure").text("+" + data.todayRecovered + " today");
@@ -270,7 +260,7 @@ $(document).ready(function() {
         $('#safe-dining').attr('src', 'images/safe-dining_tl.jpg');
         $('#safe-commuting').attr('src', 'images/safe-commuting_tl.jpg');
     })
-
+/*
     // news api to retrieve latest Singapore news in English related to Covid-19 - PARAMS passed in URL. 100 Requests Limit.
     fetch('https://gnews.io/api/v4/top-headlines?token=97a0880c40b7e3640d55b48f6553b8f2&q="covid-19"&country=sg&lang=en')
         .then(function (response) {
@@ -318,7 +308,7 @@ $(document).ready(function() {
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article5-date").text(showDate);
     });
-
+*/
     function updateData(q) {
         requestMainData(q);
         q = q.toLowerCase();
@@ -401,7 +391,6 @@ $(document).ready(function() {
             query = $('#country-input').val();
             $('#country-input').val('');
             updateData(query);
-            setLocalStorage(query);
         });
 
         // quick countries buttons
@@ -409,32 +398,30 @@ $(document).ready(function() {
             e.preventDefault();
             query = 'Singapore';
             updateData(query);
-            setLocalStorage(query);
         });
 
         $('#us-stats').on('click', function(e) {
             e.preventDefault();
             query = 'USA';
             updateData(query);
-            setLocalStorage(query);
         });
 
         $('#in-stats').on('click', function(e) {
             e.preventDefault();
             query = 'India';
             updateData(query);
-            setLocalStorage(query);
         });
 
         $('#bra-stats').on('click', function(e) {
             e.preventDefault();
             query = 'Brazil';
             updateData(query);
-            setLocalStorage(query);
         });
 
         $('#global-stats').on('click', function(e) {
             e.preventDefault();
             requestGlobalData();
         });
+
+        
 });
