@@ -83,4 +83,31 @@ Live Demo:
     > Users can input a specific datetime and retrieve the data as of that datetime.
 7. CountUp.js to increase the interactiveness and aesthetics of the site.
     > The data figures can count from 0 to the actual figure retrieved from the API.
+## Technologies Used
+* HTML5
+  * HTML5 was used in this project for the structure, contents and layout.
+* CSS3
+  * CSS3 was used in this project for the styles and appearance of the website.
+* [Bootstrap 5.0](https://getbootstrap.com/)
+  * Bootstrap 5.0 was used for fast and responsive website.
+* JavaScript
+  * Basic JavaScript was used in this project to increase the interactiveness of the website. Such as Chart.js, Local Storage.
+* [jQuery](https://jquery.com/)
+  * jQuery was used to manipulate DOMs of the website. Such as hiding of elements, change of image src, modifying the data displayed based on the API fetch.
+* API
+  * APIs were used to retrieve the necessary data such as the COVID-19 countries and global statistics and news article.
+
+### Scripts Used
+* [Chart.js](https://www.chartjs.org/)
+  * Chart.js was used to create chart based on the data retrieved by API.
+
+### API Used
+* [Disease-SH API](https://github.com/disease-sh/API)
+  * Disease-SH API was used to retrieve local, global and other countries' COVID-19 statistics, such as the total number of cases.
+
+* [GNews API](https://gnews.io/)
+  * GNews API was used to retrieve local news articles relating to COVID-19.
+
+* [Tugkan COVID-19 SG API](https://apify.com/tugkan/covid-sg)
+  * Tugkan COVID-19 SG API was used to retrieve local COVID-19 Statistics such as the number of active cases in Singapore.
 
