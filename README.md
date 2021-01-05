@@ -99,8 +99,9 @@ Live Demo:
 * JSON
   * JSON was used to create and retrieve Local Storage.
 * Adobe XD
-  * Adobe XD
-    * Adobe XD was used to create and design the wireframe of the site.
+  * Adobe XD was used to create and design the wireframe of the site.
+* Adobe Photoshop
+  * Adobe Photoshop was used to resize the advisory posters.
 ### Scripts Used
 * [Chart.js](https://www.chartjs.org/)
   * Chart.js was used to create chart based on the data retrieved by API.
