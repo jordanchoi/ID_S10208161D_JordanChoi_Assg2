@@ -117,7 +117,7 @@ Live Demo:
   * Tugkan COVID-19 SG API was used to retrieve local COVID-19 Statistics such as the number of active cases in Singapore.
 
 ## Testing
-
+![Manual Test Case](/Site-Testing/Manual-User-Testing-Case.png)
 ## Credits
 * Framework
   * [Bootstrap 5.0](https://getbootstrap.com/)

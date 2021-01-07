@@ -49,12 +49,18 @@ sup {
     color: grey;
 }
 footer {
-    height: 60px;
+    height: 70px;
 }
+
+footer p {
+    font-size: 14px;
+}
+
 .quick-change {
     width: 38px;
     margin: 0px 5px;
 }
+
 @media only screen and (min-width: 768px) {
     .sidebar {
         position: fixed;
