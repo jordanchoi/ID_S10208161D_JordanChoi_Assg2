@@ -1,6 +1,7 @@
 body {
     font-family: Open Sans, 'sans-serif';
 }
+
 h1, h2, h3 {
     font-family: Montserrat, 'sans-serif';
 }
@@ -61,6 +62,30 @@ footer p {
     margin: 0px 5px;
 }
 
+/* for preloader */
+.preloader {
+    height: 100vh;
+    background-color: #F6F6F6;
+    color: #000;
+    display: flex;
+}
+
+.preloader h2, h3 {
+    opacity: 0;
+}
+.preloader-content {
+    flex-direction: row;
+    text-align: center;
+}
+
+.preloader-content img {
+    opacity: 0;
+}
+
+.preloader-wrap {
+    overflow: hidden;
+}
+
 @media only screen and (min-width: 768px) {
     .sidebar {
         position: fixed;
@@ -88,6 +113,10 @@ footer p {
 
     .order3 {
         order: 1;
+    }
+
+    .preloader-content img {
+        width: 250px;
     }
 
     .sidebar {

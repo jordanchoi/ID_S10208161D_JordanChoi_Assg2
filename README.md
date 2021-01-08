@@ -67,21 +67,20 @@ Live Demo:
     > API was used to retrieve the latest local news related to COVID-19. Users can view these top headlines alongside with the current live data implemented in the features mentioned above.
 9. Change Language of Advisories Poster
     > Users can change the language of the advisory poster to either English, Malay, Chinese, or Tamil with a click of a button.
-
-### Potential Features
-1. Preloader with "Stay Safe" Message
+10. Preloader with "Stay Safe" Message
     > Animated Preloader with a Stay Safe message when users arrives to the site.
-2. Symptom Checker
+### Potential Features
+1. Symptom Checker
     > An application to allow users to check for their risk level of contracting COVID-19 based on symptoms. No current API is available but can be programmed with JS.
-3. Email API to contact COVID-19 departments
+2. Email API to contact COVID-19 departments
     > Email API Integration to allow users to contact relevant COVID-19 departments or agencies if necessary.
-4. Specific's Country News
+3. Specific's Country News
     > Allow users to specify country and fetch news based on the country.
-5. Fetch More News Article
+4. Fetch More News Article
     > Allow users to request to display more news article relating to COVID-19 with a click of a button.
-6. Historical COVID-19 Data & Chart
+5. Historical COVID-19 Data & Chart
     > Users can input a specific datetime and retrieve the data as of that datetime.
-7. CountUp.js to increase the interactiveness and aesthetics of the site.
+6. CountUp.js to increase the interactiveness and aesthetics of the site.
     > The data figures can count from 0 to the actual figure retrieved from the API.
 ## Technologies Used
 * HTML5
