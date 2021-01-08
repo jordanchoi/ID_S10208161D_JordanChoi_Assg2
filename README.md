@@ -28,7 +28,6 @@ As there are plenty of such data on the internet, such as WHOâ€™s website, MOHâ€
 6. Responsive throughout most devices
 
 ### Wireframe:
-
 > https://xd.adobe.com/view/bfcae48c-b134-4121-9f71-bdd6b80c7fe0-ea99/
 
 ### Color Scheme:
@@ -117,6 +116,7 @@ Live Demo:
 
 ## Testing
 ![Manual Test Case](/Site-Testing/Manual-User-Testing-Case.png)
+![Manual Test Case Mobile](/Site-Testing/Manual-User-Testing-Case-Mobile.png)
 ## Credits
 * Framework
   * [Bootstrap 5.0](https://getbootstrap.com/)
@@ -125,13 +125,10 @@ Live Demo:
   * [jQuery](https://jquery.com/)
 * Fonts
   * **Google Fonts** - Expletus Sans, Montserrat, Nunito Sans, Quattrocento Sans, Source Sans Pro, Open Sans
-
 * COVID-19 Statistics (Total Cases, Recovered Cases, Deceased Cases)
   * [Disease-SH API](https://github.com/disease-sh/API)
-
 * COVID-19 Statistics (Local Cases, Active Cases, In Community Facilities, Hospitalized & Stablized)
   * [Tugkan COVID-19 SG API](https://apify.com/tugkan/covid-sg)
-
 * News Articles
   * [GNews API](https://gnews.io/)
 
@@ -179,6 +176,11 @@ Live Demo:
 
     * MOH, Safe Commuting TL, Retrieved from https://www.moh.gov.sg/docs/librariesprovider5/covid-19-inforgraphics/safe-commuting_tl.jpg
 
+    * Generated Photos, Asian Female & Asian Male, Retrieved from https://generated.photos/
+
+    * Razerzone, Surgical Mask on Asians, Retrieved from https://assets2.razerzone.com/images/razerforlife/masks/razerforlife-surgical-mask.png
 ## References & Acknowledgments
 * Themes
   * [Bootstrap Example - Dashboard](https://getbootstrap.com/docs/5.0/examples/dashboard/) was referenced for the layout of the site.
+  * [Generated.Photos](https://generated.photos/faces#) was used to retrieve fictional and images of humans created through Artificial Intelligence
+  * [King Rayhan](https://kingrayhan.medium.com/create-a-simple-preloader-with-jquery-c6efb03c7f23) was **referenced** for the script of preloader

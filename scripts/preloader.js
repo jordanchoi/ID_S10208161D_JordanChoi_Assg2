@@ -8,6 +8,8 @@ $(document).ready(function() {
     Body.addClass('preloader-wrap');
     setTimeout(function() {
         $('.preloader').fadeOut("slow", "linear");
-        Body.removeClass('preloader-wrap');
     }, 3000)
+    setTimeout(function() {
+        Body.removeClass('preloader-wrap');
+    }, 4000)
 });
