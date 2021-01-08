@@ -36,7 +36,7 @@ As there are plenty of such data on the internet, such as WHOâ€™s website, MOHâ€
 * Sidebar: #F8F9FA
 * Background: #FFFFFF
 * Texts: #000000, #0E6EFD, #FFA600, #198753, #038004, #0D58CA
-* Charts: #FFC533, #A30101, #079BFF
+* Charts: #FFC533, #A30101, #079BFF, #1F9501
 
 Choice of Colors Rationale:
 * Simple colors was used so that it does not clutter the site. 

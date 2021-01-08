@@ -66,7 +66,7 @@ $(document).ready(function() {
                     $("#new-deaths-figure").text("+0 today");
                 }
                 
-                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered];
+                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered, data.active];
                 totalCasesChart.update();
             },
             error: function() {
@@ -76,8 +76,8 @@ $(document).ready(function() {
     }
     requestMainData(query);
     updateData(query);
-    // requestLocalData();
     
+    // requestLocalData();
     function requestGlobalData() {
         $.ajax({
             type: "GET",
@@ -109,7 +109,7 @@ $(document).ready(function() {
                 else {
                     $("#new-deaths-figure").text("+0 today");
                 }
-                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered];
+                totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered, data.active];
                 totalCasesChart.update();
 
                 $('.dorscon-level').hide();
@@ -148,7 +148,8 @@ $(document).ready(function() {
             },
         })
     };
-    
+
+    // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
     function requestLocalData() {
         $.ajax({
             type: "GET",
@@ -171,9 +172,6 @@ $(document).ready(function() {
             },
         });
     }
-
-    // in-depth local statistics (active cases, ICU, Hospitalized, Community Facilities figures)
-    
 
     // advisories language buttons
     $('#swap_en').click(function(e) {                                           // english

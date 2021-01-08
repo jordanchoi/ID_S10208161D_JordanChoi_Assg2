@@ -24,6 +24,9 @@ h1, h2, h3 {
 #data-flag {
     width: 120px;
 }
+#country-name {
+    font-weight: bold;
+}
 
 .news-img {
     width: 480px;

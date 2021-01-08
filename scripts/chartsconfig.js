@@ -3,13 +3,14 @@ var ctx = document.getElementById('totalCasesChart');
 var totalCasesChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ["Deceased", "Recovered"],
+        labels: ["Deceased", "Recovered", "Active"],
         datasets: [{
             label: 'Total Cases',
-            data: [null, null],
+            data: [null, null, null],
             backgroundColor: [
                 'rgba(186, 0, 0, 1)',
                 'rgba(54, 162, 235, 1)',
+                'rgba(35, 161, 0, 1)'
             ],
             borderWidth: 0
         }]
