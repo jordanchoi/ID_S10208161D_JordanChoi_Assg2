@@ -30,7 +30,6 @@ h1, h2, h3 {
     width: 480px;
 }
 
-
 sup {
     font-size: 16px;
     font-family: Expletus Sans, 'sans-serif';
@@ -115,8 +114,10 @@ footer p {
         order: 1;
     }
 
-    .preloader-content img {
-        width: 250px;
+
+    .preloader-content {
+        display: flex;
+        flex-direction: row;
     }
 
     .sidebar {
