@@ -8,7 +8,7 @@ $(document).ready(function() {
     var query = localStorage.getItem("country");
     
     if (query == null) {
-        query = "Singapore";
+        query = "singapore";
         setLocalStorage(query);     
     }
 
