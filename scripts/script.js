@@ -6,6 +6,7 @@ function setLocalStorage(q) {
 $(document).ready(function() {
     // Local Storage
     var query = localStorage.getItem("country");
+    
     if (query == null) {
         query = "Singapore";
         setLocalStorage(query);     
@@ -341,7 +342,7 @@ $(document).ready(function() {
     // quick countries buttons
     $("#sg-stats").on("click", function(e) {
         e.preventDefault();
-        query = "Singapore";
+        query = "singapore";
         updateData(query);
         setLocalStorage(query);
     });
