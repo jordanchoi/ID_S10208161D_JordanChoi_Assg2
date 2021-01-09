@@ -4,6 +4,7 @@ function setLocalStorage(q) {
 }
 
 $(document).ready(function() {
+    $(window).scrollTop(0);
     // Local Storage
     var query = localStorage.getItem("country");
     
@@ -372,4 +373,9 @@ $(document).ready(function() {
         e.preventDefault();
         requestGlobalData();
     });
+
+    // scroll top when mobile menu is triggered, prevent overflows.
+    $('.navbar-toggler').on('click', function(e) {
+        $(window).scrollTop(0);
+    })
 });
