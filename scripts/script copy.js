@@ -1,16 +1,15 @@
-// Set Local Storage Function
 function setLocalStorage(q) {
-    localStorage.setItem("country", q);
+    localStorage.setItem('country', q);
 }
 
 $(document).ready(function() {
-    // Local Storage
-    var query = localStorage.getItem("country");
+    var query = localStorage.getItem('country');
+
     if (query == null) {
-        query = "Singapore";
+        query = 'Singapore';
         setLocalStorage(query);     
     }
-
+    
     function requestMainData(query) {
         $.ajax({
             type: "GET",
@@ -27,8 +26,8 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $("#data-flag").attr("src", data.countryInfo.flag);
-                $("#scope").text(data.country);
-                $("#country-name").text(data.country);
+                $('#scope').text(data.country);
+                $('#country-name').text(data.country)
 
                 if (data.cases != null) {
                     $("#total-cases-figure").text(data.cases);
@@ -71,7 +70,7 @@ $(document).ready(function() {
                 totalCasesChart.update();
             },
             error: function() {
-                alert("An error occurred. You may have entered an invalid country.");
+                alert('An error occurred. You may have entered an invalid country.')
             }
         });
     }
@@ -86,9 +85,9 @@ $(document).ready(function() {
             contentType: "text/plain",
             url: "https://corona.lmao.ninja/v2/all?yesterday=false",
             success: function(data) {
-                $("#data-flag").attr("src", "images/icons/global-icon.png");
-                $("#scope").text("Global");
-                $("#country-name").text("Global");
+                $("#data-flag").attr('src', 'images/icons/global-icon.png');
+                $('#scope').text("Global");
+                $('#country-name').text("Global");
                 $("#total-cases-figure").text(data.cases);
                 $("#recovered-figure").text(data.recovered);
                 $("#deceased-figure").text(data.deaths);
@@ -112,21 +111,22 @@ $(document).ready(function() {
                 }
                 totalCasesChart.data.datasets[0].data = [data.deaths, data.recovered, data.active];
                 totalCasesChart.update();
-                $(".dorscon-level").hide();
-                $(".phase-level").hide();        
+
+                $('.dorscon-level').hide();
+                $('.phase-level').hide();        
                 $("#stable-cases-figure").text("No Data Available");
                 $("#community-facilities-figure").text("No Data Available");
-                $("#stable-cases-figure").removeClass("text-primary");
+                $("#stable-cases-figure").removeClass('text-primary');
                 $("#community-facilities-figure").removeClass("text-primary");
-                $("#stable-cases-figure").removeClass("large-text");
+                $("#stable-cases-figure").removeClass('large-text');
                 $("#community-facilities-figure").removeClass("large-text");
                 $("#stable-cases-figure").css({
-                    "color" : "red",
-                    "font-family" : "Montserrat, 'sans-serif'"
+                    'color' : 'red',
+                    'font-family' : 'Montserrat, "sans-serif"'
                 });
                 $("#community-facilities-figure").css({
-                    "color" : "red",
-                    "font-family" : "Montserrat, 'sans-serif'"
+                    'color' : 'red',
+                    'font-family' : 'Montserrat, "sans-serif"'
                 });
 
                 if (data.active != null) {
@@ -173,6 +173,35 @@ $(document).ready(function() {
         });
     }
 
+    // advisories language buttons
+    $('#swap_en').click(function(e) {                                           // english
+        $('#safe-shop').attr('src', 'images/safe-shopping_eng.jpg');
+        $('#safe-outdoors').attr('src', 'images/safe-outdoors_eng.jpg');
+        $('#safe-dining').attr('src', 'images/safe-dining_eng.jpg');
+        $('#safe-commuting').attr('src', 'images/safe-commuting_eng.jpg');
+    })
+
+    $('#swap_ch').click(function(e) {                                           // chinese
+        $('#safe-shop').attr('src', 'images/safe-shopping_chi.jpg');
+        $('#safe-outdoors').attr('src', 'images/safe-outdoors_chi.jpg');
+        $('#safe-dining').attr('src', 'images/safe-dining_chi.jpg');
+        $('#safe-commuting').attr('src', 'images/safe-commuting_chi.jpg');
+    })
+
+    $('#swap_ml').click(function(e) {                                           // malay
+        $('#safe-shop').attr('src', 'images/safe-shopping_ml.jpg');
+        $('#safe-outdoors').attr('src', 'images/safe-outdoors_ml.jpg');
+        $('#safe-dining').attr('src', 'images/safe-dining_ml.jpg');
+        $('#safe-commuting').attr('src', 'images/safe-commuting_ml.jpg');
+    })
+
+    $('#swap_tl').click(function(e) {                                           // tamil
+        $('#safe-shop').attr('src', 'images/safe-shopping_tl.jpg');
+        $('#safe-outdoors').attr('src', 'images/safe-outdoors_tl.jpg');
+        $('#safe-dining').attr('src', 'images/safe-dining_tl.jpg');
+        $('#safe-commuting').attr('src', 'images/safe-commuting_tl.jpg');
+    })
+
     // news api to retrieve latest Singapore news in English related to Covid-19 - PARAMS passed in URL. 100 Requests Limit.
     fetch('https://gnews.io/api/v4/top-headlines?token=97a0880c40b7e3640d55b48f6553b8f2&q="covid-19"&country=sg&lang=en')
         .then(function (response) {
@@ -180,42 +209,42 @@ $(document).ready(function() {
         })
         .then(function (data) {
             // article 1
-            $("#article1-img").attr("src", data.articles[0].image);
+            $("#article1-img").attr('src', data.articles[0].image);
             $("#article-title1").text(data.articles[0].title);
             $("#article-content1").text(data.articles[0].description);
-            $("#article1-link").attr("href", data.articles[0].url);
+            $("#article1-link").attr('href', data.articles[0].url);
             var publishedDate = new Date(data.articles[0].publishedAt);
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article1-date").text(showDate);
             // article 2
-            $("#article2-img").attr("src", data.articles[1].image);
+            $("#article2-img").attr('src', data.articles[1].image);
             $("#article-title2").text(data.articles[1].title);
             $("#article-content2").text(data.articles[1].description);
-            $("#article2-link").attr("href", data.articles[1].url);
+            $("#article2-link").attr('href', data.articles[1].url);
             var publishedDate = new Date(data.articles[1].publishedAt);
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article2-date").text(showDate);
             // article 3
-            $("#article3-img").attr("src", data.articles[2].image);
+            $("#article3-img").attr('src', data.articles[2].image);
             $("#article-title3").text(data.articles[2].title);
             $("#article-content3").text(data.articles[2].description);
-            $(".article3-link").attr("href", data.articles[2].url);
+            $(".article3-link").attr('href', data.articles[2].url);
             var publishedDate = new Date(data.articles[2].publishedAt);
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article3-date").text(showDate);
             // article 4
-            $("#article4-img").attr("src", data.articles[3].image);
+            $("#article4-img").attr('src', data.articles[3].image);
             $("#article-title4").text(data.articles[3].title);
             $("#article-content4").text(data.articles[3].description);
-            $(".article4-link").attr("href", data.articles[3].url);
+            $(".article4-link").attr('href', data.articles[3].url);
             var publishedDate = new Date(data.articles[3].publishedAt);
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article4-date").text(showDate);
             //article 5
-            $("#article5-img").attr("src", data.articles[4].image);
+            $("#article5-img").attr('src', data.articles[4].image);
             $("#article-title5").text(data.articles[4].title);
             $("#article-content5").text(data.articles[4].description);
-            $(".article5-link").attr("href", data.articles[4].url);
+            $(".article5-link").attr('href', data.articles[4].url);
             var publishedDate = new Date(data.articles[4].publishedAt);
             var showDate = publishedDate.getDate() + "-" + (publishedDate.getMonth() + 1) + "-" + publishedDate.getFullYear();
             $("#article5-date").text(showDate);
@@ -225,19 +254,19 @@ $(document).ready(function() {
         requestMainData(q);
         q = q.toLowerCase();
 
-        if (q == "singapore" || q == "sg") {
-            $(".dorscon-level").show();
-            $(".phase-level").show();
+        if (q == 'singapore' || q == 'sg') {
+            $('.dorscon-level').show();
+            $('.phase-level').show();
 
-            $("#stable-cases-figure").addClass("text-primary");
+            $("#stable-cases-figure").addClass('text-primary');
             $("#community-facilities-figure").addClass("text-primary");
-            $("#stable-cases-figure").addClass("large-text");
+            $("#stable-cases-figure").addClass('large-text');
             $("#community-facilities-figure").addClass("large-text");
             $("#stable-cases-figure").css({
-                "font-family" : "Expletus Sans, 'sans-serif'"
+                'font-family' : 'Expletus Sans, "sans-serif"'
             });
             $("#community-facilities-figure").css({
-                "font-family" : "Expletus Sans, 'sans-serif'"
+                'font-family' : 'Expletus Sans, "sans-serif"'
             });
 
             removeData(activeCasesChart);
@@ -260,21 +289,21 @@ $(document).ready(function() {
                     allowNull: "true"
                 },
                 success: function(data) {
-                    $(".dorscon-level").hide();
-                    $(".phase-level").hide();        
+                    $('.dorscon-level').hide();
+                    $('.phase-level').hide();        
                     $("#stable-cases-figure").text("No Data Available");
                     $("#community-facilities-figure").text("No Data Available");
-                    $("#stable-cases-figure").removeClass("text-primary");
+                    $("#stable-cases-figure").removeClass('text-primary');
                     $("#community-facilities-figure").removeClass("text-primary");
-                    $("#stable-cases-figure").removeClass("large-text");
+                    $("#stable-cases-figure").removeClass('large-text');
                     $("#community-facilities-figure").removeClass("large-text");
                     $("#stable-cases-figure").css({
-                        "color" : "red",
-                        "font-family" : "Montserrat, 'sans-serif'"
+                        'color' : 'red',
+                        'font-family' : 'Montserrat, "sans-serif"'
                     });
                     $("#community-facilities-figure").css({
-                        "color" : "red",
-                        "font-family" : "Montserrat, 'sans-serif'"
+                        'color' : 'red',
+                        'font-family' : 'Montserrat, "sans-serif"'
                     });
 
                     if (data.active != null) {
@@ -297,78 +326,46 @@ $(document).ready(function() {
             });
         }
     }
-
-    // advisories language buttons
-        // english
-    $("#swap_en").click(function(e) {
-        $("#safe-shop").attr("src", "images/safe-shopping_eng.jpg");
-        $("#safe-outdoors").attr("src", "images/safe-outdoors_eng.jpg");
-        $("#safe-dining").attr("src", "images/safe-dining_eng.jpg");
-        $("#safe-commuting").attr("src", "images/safe-commuting_eng.jpg");
-    })
-        // chinese
-    $("#swap_ch").click(function(e) {
-        $("#safe-shop").attr("src", "images/safe-shopping_chi.jpg");
-        $("#safe-outdoors").attr("src", "images/safe-outdoors_chi.jpg");
-        $("#safe-dining").attr("src", "images/safe-dining_chi.jpg");
-        $("#safe-commuting").attr("src", "images/safe-commuting_chi.jpg");
-    })
-        // malay
-    $("#swap_ml").click(function(e) {                                           
-        $("#safe-shop").attr("src", "images/safe-shopping_ml.jpg");
-        $("#safe-outdoors").attr("src", "images/safe-outdoors_ml.jpg");
-        $("#safe-dining").attr("src", "images/safe-dining_ml.jpg");
-        $("#safe-commuting").attr("src", "images/safe-commuting_ml.jpg");
-    })
-
-        // tamil
-    $("#swap_tl").click(function(e) {                                           
-        $("#safe-shop").attr("src", "images/safe-shopping_tl.jpg");
-        $("#safe-outdoors").attr("src", "images/safe-outdoors_tl.jpg");
-        $("#safe-dining").attr("src", "images/safe-dining_tl.jpg");
-        $("#safe-commuting").attr("src", "images/safe-commuting_tl.jpg");
-    })
-
         // country-search button
-    $("#country-search").submit(function(e){
-        e.preventDefault();
-        query = $("#country-input").val();
-        $("#country-input").val("");
-        updateData(query);
-        setLocalStorage(query);
-    });
+        $('#country-search').submit(function(e){
+            e.preventDefault();
+            query = $('#country-input').val();
+            $('#country-input').val('');
+            updateData(query);
+            setLocalStorage(query);
+        });
 
-    // quick countries buttons
-    $("#sg-stats").on("click", function(e) {
-        e.preventDefault();
-        query = "Singapore";
-        updateData(query);
-        setLocalStorage(query);
-    });
+        // quick countries buttons
+        $('#sg-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'Singapore';
+            updateData(query);
+            setLocalStorage(query);
+        });
 
-    $("#us-stats").on("click", function(e) {
-        e.preventDefault();
-        query = "USA";
-        updateData(query);
-        setLocalStorage(query);
-    });
+        $('#us-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'USA';
+            updateData(query);
+            setLocalStorage(query);
+        });
 
-    $("#in-stats").on("click", function(e) {
-        e.preventDefault();
-        query = "India";
-        updateData(query);
-        setLocalStorage(query);
-    });
+        $('#in-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'India';
+            updateData(query);
+            setLocalStorage(query);
+        });
 
-    $("#bra-stats").on("click", function(e) {
-        e.preventDefault();
-        query = "Brazil";
-        updateData(query);
-        setLocalStorage(query);
-    });
+        $('#bra-stats').on('click', function(e) {
+            e.preventDefault();
+            query = 'Brazil';
+            updateData(query);
+            setLocalStorage(query);
+        });
 
-    $("#global-stats").on("click", function(e) {
-        e.preventDefault();
-        requestGlobalData();
-    });
+        $('#global-stats').on('click', function(e) {
+            e.preventDefault();
+            requestGlobalData();
+        });
 });
