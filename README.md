@@ -44,7 +44,7 @@ Choice of Colors Rationale:
 * Colors chosen also blends together well and is aesthetically pleasing.
 
 Live Demo:
-> https://jordanchoi.github.io/ID_S10208161D_JordanChoi_Assg2/index.html
+> https://jordanchoi.github.io/ID_S10208161D_JordanChoi_Assg2/ID_S10208161D_JordanChoi_Website/index.html
 
 ## Features
 ### Existing Features in the Web Application
