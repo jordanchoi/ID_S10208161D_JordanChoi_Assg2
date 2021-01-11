@@ -116,10 +116,10 @@ Live Demo:
 
 ## Testing
   ### Desktop
-  ![Manual Test Case](/Site-Testing/Manual-User-Testing-Case.png)
+  ![Manual Test Case](/ID_S10208161D_JordanChoi_Testing/Test-Case/Manual-User-Testing-Case.png)
 
   ### Mobile
-  ![Manual Test Case Mobile](/Site-Testing/Manual-User-Testing-Case-Mobile.png)
+  ![Manual Test Case Mobile](/ID_S10208161D_JordanChoi_Testing/Test-Case/Manual-User-Testing-Case-Mobile.png)
 ## Credits
 * Framework
   * [Bootstrap 5.0](https://getbootstrap.com/)
